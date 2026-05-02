@@ -1,5 +1,5 @@
 {
-  "name": "diondev-tool1",
+  "name": "diondevtool",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
