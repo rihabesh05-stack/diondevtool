@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/test", (req, res) => {
-  res.send("OK WORKING");
+  res.json({ message: "API is working fine" });
 });
 
 app.get("/{*path}", (req, res) => {
