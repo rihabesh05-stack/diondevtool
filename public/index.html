@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test</title>
+  <title>Remove BG Tool</title>
 </head>
 <body>
-  <h1>🚀 Site Working</h1>
+  <h2>Upload image</h2>
+
+  <input type="file" id="imageInput">
+  <button onclick="removeBg()">Remove Background</button>
+
+  <br><br>
+  <img id="result" style="max-width:300px;">
+
+  <script>
+    async function removeBg() {
+      const file = document.getElementById("imageInput").files[0];
+
+      if (!file) {
+        alert("Choose image");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await fetch("/remove-bg", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        document.getElementById("result").src =
+          "data:image/png;base64," + data.image;
+      } else {
+        alert("error");
+      }
+    }
+  </script>
 </body>
 </html>
